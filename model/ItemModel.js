@@ -47,7 +47,7 @@ const Item = {
         }
         if (filters.endDate) {
             query += ' AND created_at <= ?';
-            params.push(filters.endDate);8
+            params.push(filters.endDate);
         }
 
         // Ordenar resultados
@@ -75,12 +75,12 @@ const Item = {
     },
 
     update: (id, data, callback) => {
-        const { name, price, description, image_url } = data;
+        const { name, price, description } = data;
         const now = new Date();
 
         connection.query(
-            'UPDATE item SET name = ?, price = ?, description = ?, image_url = ?, modified_at = ? WHERE id = ?',
-            [name, price, description, image_url, now, id],
+            'UPDATE item SET name = ?, price = ?, description = ?, modified_at = ? WHERE id = ?',
+            [name, price, description, now, id],
             (err, results) => {
                 if (err) {
                     callback(err);
@@ -103,6 +103,10 @@ const Item = {
                 }
             }
         );
+    },
+
+    upload : () =>{
+
     },
 
 };
